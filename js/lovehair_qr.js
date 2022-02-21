@@ -39,6 +39,8 @@ LoveHair.qrReeader = (() => {
         video.play();
         await execQrReader();
       };
+      video.style.cssText +=
+        "transform: rotateY(180deg);-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-ms-transform:rotateY(180deg);";
     } catch (e) {
       showUnsuportedScreen();
     }
@@ -50,6 +52,7 @@ LoveHair.qrReeader = (() => {
   const execQrReader = async () => {
     const canvas = $.getElementById("lovehair_canvas");
     const context = canvas.getContext("2d");
+    //  canvas.style.transform = "scaleX(-1)";
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const ret = jsQR(imageData.data, canvas.width, canvas.height);
