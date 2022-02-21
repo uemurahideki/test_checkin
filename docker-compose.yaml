@@ -1,0 +1,45 @@
+version: "3"
+services:
+  lovehair_ckeckin_html5:
+    container_name: lovehair_ckeckin_html5
+    hostname: lovehair_ckeckin_html5
+    image: nginx:latest
+    ports:
+      - "3000:80"
+    volumes:
+      - .:/usr/share/nginx/html
+    depends_on:
+      - lovehair_ckeckin_html5_httpsproxy
+  lovehair_ckeckin_html5_httpsproxy:
+    container_name: lovehair_ckeckin_html5_httpsproxy
+    hostname: lovehair_ckeckin_html5_httpsproxy
+    image: steveltn/https-portal:1
+    ports:
+      - "13443:443"
+    environment:
+      STAGE: local
+      DOMAINS: "test.local -> http://192.168.165.235:3000"
+      # DOMAINS: 'localhost -> http://192.168.165.235:3000'
+    # extra_hosts:
+    #   - "host.docker.internal:192.168.165.235"
+  apimockqr:
+    image: stoplight/prism:3
+    container_name: "apimockqr"
+    hostname: apimockqr
+    ports:
+      - "8000:4010"
+    command: mock -h 0.0.0.0 /openapi.json
+    volumes:
+      - ./openapi/openapi.json:/openapi.json
+  apidocqr:
+    container_name: apidocqr
+    hostname: apidocqr
+    image: swaggerapi/swagger-ui:latest
+    tty: true
+    volumes:
+      - ./openapi:/var/openapi
+    environment:
+      SWAGGER_JSON: /var/openapi/openapi.json
+    ports:
+      - 18080:8080
+    restart: always

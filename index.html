@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lovehairtチェックイン</title>
+    <link rel="stylesheet" href="./css/lovehair_qr.css" />
+  </head>
+  <body>
+    <div class="reader">
+      <video
+        id="lovehair_video"
+        class="reader-video"
+        autoplay
+        playsinline
+      ></video>
+    </div>
+
+    <div class="reticle">
+      <div class="reticle-box"></div>
+    </div>
+
+    <div style="display: none">
+      <canvas id="lovehair_canvas"></canvas>
+    </div>
+    <div id="lovehair_check_unsupported" class="unsupported">
+      <p class="unsupported-title">ブラウザチェック</p>
+      <p>
+        ブラウザが対応してない。またはブラウザにカメラ権限が設定されていない。またはHTTPSでない
+      </p>
+    </div>
+
+    <div id="lovehair_message_area" class="message">
+      <p id="lovehair_message_title" class="message-title"></p>
+      <p id="lovehair_message_message"></p>
+    </div>
+
+    <script src="./env.js"></script>
+    <script src="./js/jsQR.js"></script>
+    <script type="module" src="./js/lovehair_qr.js"></script>
+  </body>
+</html>
+
+
+docker stop lovehair_ckeckin_html5
+docker rm lovehair_ckeckin_html5
+docker stop lovehair_ckeckin_html5_httpsproxy
+docker rm lovehair_ckeckin_html5_httpsproxy
+docker stop apimockqr
+docker rm apimockqr
+docker stop apidocqr
+docker rm apidocqr
