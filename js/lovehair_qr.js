@@ -4,6 +4,8 @@ const DEVICE_ID =
   "06b007045f8ef9acc6f6916baa6e57cd2d9d72edac80c5c5a559c5767de6297d";
 window.LoveHair = window.LoveHair || {};
 LoveHair.qrReeader = (() => {
+  alert(1);
+
   const $ = document;
   const video = $.getElementById("lovehair_video");
 
