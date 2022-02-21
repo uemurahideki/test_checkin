@@ -39,8 +39,8 @@ LoveHair.qrReeader = (() => {
         video.play();
         await execQrReader();
       };
-      // video.style.cssText +=
-      //   "transform: rotateY(180deg);-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-ms-transform:rotateY(180deg);";
+       video.style.cssText +=
+         "transform: rotateY(180deg);-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-ms-transform:rotateY(180deg);";
     } catch (e) {
       showUnsuportedScreen();
     }
